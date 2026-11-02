@@ -74,7 +74,7 @@ Clique nas etapas abaixo para copiar os prompts usados na oficina:
 <summary><b>Passo 1: Criando a estrutura base do Dashboard</b> (Clique para expandir)</summary>
 
 PROMPT PARA CRIAÇÃO DO DASHBOARD PELO COMPUTADOR
-Preciso de um projeto em Python para trabalhar com dados abertos do DATASUS, entregue em arquivos prontos e testados. Responda em português do Brasil.
+```Preciso de um projeto em Python para trabalhar com dados abertos do DATASUS, entregue em arquivos prontos e testados. Responda em português do Brasil.
 
 ## Meu ambiente
 - Windows, PowerShell e VS Code. Python 3.13 em um ambiente virtual `.venv`.
@@ -109,5 +109,5 @@ Preciso de um projeto em Python para trabalhar com dados abertos do DATASUS, ent
 - Evite `use_container_width` (descontinuado) e use `width="stretch"`.
 - Ao final, dê o `pip install` necessário e o comando para rodar: `python -m streamlit run app_datasus.py` (no Windows, o comando `streamlit` direto costuma falhar).
 - Explique em poucas linhas como conferir o resultado (`pd.read_parquet(...)`, `.shape`, `.head()`).
-- Seja objetivo: entregue os arquivos e um resumo curto, sem tutoriais longos.
+- Seja objetivo: entregue os arquivos e um resumo curto, sem tutoriais longos.```
 
