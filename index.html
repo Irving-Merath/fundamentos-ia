@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fundamentos de IA para Programar com IA Generativa | BEZ</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --color-primary: #013832;
+      --color-gold-1: #C39118;
+      --color-gold-2: #9A7013;
+      --color-gold-3: #D6B677;
+      --color-gold-4: #9E730F;
+      --color-gold-light: #FFE083;
+      --color-gold-warm: #E2B85C;
+      --color-bg: #FFFFFF;
+      --color-text-dark: #013832;
+      --color-muted: #475569;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #001f1c;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--color-text-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Deck Container */
+    #deck-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1280px;
+      height: 720px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--color-bg);
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      height: 100%;
+      padding: 44px 64px;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+      background: #FFFFFF;
+    }
+
+    .slide.active {
+      display: flex;
+      animation: fadeIn 0.25s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.995); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Tipografia */
+    .slide-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--color-primary);
+      line-height: 1.2;
+    }
+
+    .slide-eyebrow {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--color-gold-1);
+      margin-bottom: 6px;
+    }
+
+    .content-area {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 12px 0;
+    }
+
+    /* Barra de Navegação */
+    #nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 14px;
+      color: var(--color-gold-light);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      user-select: none;
+    }
+
+    .nav-btn {
+      background: var(--color-primary);
+      color: var(--color-gold-light);
+      border: 1px solid var(--color-gold-3);
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      background: var(--color-gold-1);
+      color: #013832;
+    }
+
+    /* Logos */
+    .brand-logo {
+      height: 40px;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="deck-wrapper">
+
+    <!-- SLIDE 1: Capa (Brand Dark) -->
+    <div class="slide active" id="slide-1" style="background: var(--color-primary); padding: 56px 80px;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span class="slide-eyebrow" style="color: var(--color-gold-light); margin:0;">Palestra & Workshop Prático</span>
+        <img src="BEZ_GOLD.png" alt="Logo BEZ" class="brand-logo" style="height:56px;" onerror="this.style.display='none'">
+      </div>
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <h1 style="font-family:'Space Grotesk',sans-serif; font-size:52px; font-weight:800; color:#FFFFFF; line-height:1.15; max-width:920px;">
+          Fundamentos de IA para Criar Soluções com Vibecoding
+        </h1>
+        <p style="font-size:22px; color: var(--color-gold-3); max-width:760px; line-height:1.4;">
+          Da pergunta pioneira de Alan Turing à criação de produtos em linguagem natural.
+        </p>
+      </div>
+      <div style="display:flex; gap:36px; align-items:center; border-top:1px solid rgba(214,182,119,0.3); padding-top:20px;">
+        <div style="display:flex; align-items:center; gap:10px; color: var(--color-gold-light);">
+          <i class="fa-regular fa-clock" style="font-size:20px;"></i>
+          <span style="font-size:18px; font-weight:600;">15 min de Fundamentos Teóricos</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; color: var(--color-gold-warm);">
+          <i class="fa-solid fa-laptop-code" style="font-size:20px;"></i>
+          <span style="font-size:18px; font-weight:600;">Mão na Massa: Dashboard Interativo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: Provocação Central -->
+    <div class="slide" id="slide-2">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div>
+          <p class="slide-eyebrow">Ponto de Partida</p>
+          <h2 class="slide-title">A Pergunta Histórica</h2>
+        </div>
+        <img src="BEZ_GOLD.png" alt="Logo BEZ" class="brand-logo" onerror="this.style.display='none'">
+      </div>
+      <div class="content-area" style="flex-direction:column; text-align:center;">
+        <i class="fa-solid fa-brain" style="font-size:58px; color: var(--color-gold-1); margin-bottom:24px;"></i>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:56px; font-weight:800; color:var(--color-primary); line-height:1.15; max-width:900px; margin-bottom:24px;">
+          "Máquinas podem pensar?"
+        </h3>
+        <p style="font-size:22px; color: var(--color-muted); max-width:780px; line-height:1.4;">
+          Em 1950, Alan Turing propôs substituir o debate filosófico insolúvel sobre a mente por uma avaliação de comportamento observável: o <b>Jogo da Imitação</b>.
+        </p>
+      </div>
+      <div style="border-top:1px solid #e2e8f0; padding-top:10px; text-align:right;">
+        <span style="font-size:13px; color:var(--color-gold-2); font-weight:600;">Turing, A. M. (1950) — Computing Machinery and Intelligence</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: O Teste de Turing & Máquina-Criança -->
+    <div class="slide" id="slide-3">
+      <div>
+        <p class="slide-eyebrow">Alan Turing (1950)</p>
+        <h2 class="slide-title">Do Jogo da Imitação ao Aprendizado</h2>
+      </div>
+      <div class="content-area">
+        <div style="display:flex; gap:24px; width:100%;">
+          <!-- Painel 1: Teste de Turing -->
+          <div style="flex:1; background:#f9fafb; border:1px solid var(--color-gold-3); border-radius:14px; padding:22px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <h3 style="font-size:20px; font-weight:700; color:var(--color-primary); margin-bottom:4px;">O Teste de Turing</h3>
+              <p style="font-size:15px; color:var(--color-muted); margin-bottom:14px;">Distinção por respostas escritas às cegas.</p>
+            </div>
+            <!-- Diagrama SVG Interrogador -->
+            <div style="background:#FFFFFF; border-radius:10px; padding:12px; border:1px dashed var(--color-gold-3); text-align:center;">
+              <svg width="240" height="110" viewBox="0 0 240 110" style="margin:0 auto; display:block;">
+                <circle cx="120" cy="22" r="14" fill="#013832"/>
+                <text x="120" y="27" fill="#FFF" font-size="11" text-anchor="middle" font-weight="bold">C</text>
+                <text x="120" y="46" fill="#013832" font-size="10" text-anchor="middle" font-weight="bold">Interrogador</text>
+                <line x1="105" y1="52" x2="50" y2="75" stroke="#C39118" stroke-width="2" stroke-dasharray="3,3"/>
+                <line x1="135" y1="52" x2="190" y2="75" stroke="#C39118" stroke-width="2" stroke-dasharray="3,3"/>
+                <rect x="20" y="75" width="60" height="28" rx="6" fill="#f8fafc" stroke="#9A7013" stroke-width="1.5"/>
+                <text x="50" y="93" fill="#013832" font-size="11" text-anchor="middle" font-weight="bold">Humano A</text>
+                <rect x="160" y="75" width="60" height="28" rx="6" fill="#013832"/>
+                <text x="190" y="93" fill="#FFE083" font-size="11" text-anchor="middle" font-weight="bold">Máquina B</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Painel 2: A Máquina-Criança -->
+          <div style="flex:1; background:#f9fafb; border:1px solid var(--color-gold-3); border-radius:14px; padding:22px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <h3 style="font-size:20px; font-weight:700; color:var(--color-primary); margin-bottom:4px;">A Máquina-Criança</h3>
+              <p style="font-size:15px; color:var(--color-muted); margin-bottom:14px;">Um caderno em branco educado por experiência.</p>
+            </div>
+            <!-- Diagrama Fluxo -->
+            <div style="background:#FFFFFF; border-radius:10px; padding:16px 10px; border:1px dashed var(--color-gold-3); display:flex; align-items:center; justify-content:space-between;">
+              <div style="text-align:center;">
+                <i class="fa-solid fa-arrow-down-up-across-line" style="font-size:20px; color:var(--color-primary);"></i>
+                <div style="font-size:12px; font-weight:700; color:var(--color-primary); margin-top:4px;">Entrada</div>
+              </div>
+              <i class="fa-solid fa-chevron-right" style="color:var(--color-gold-1);"></i>
+              <div style="text-align:center;">
+                <i class="fa-solid fa-network-wired" style="font-size:20px; color:var(--color-gold-2);"></i>
+                <div style="font-size:12px; font-weight:700; color:var(--color-gold-2); margin-top:4px;">Padrões</div>
+              </div>
+              <i class="fa-solid fa-chevron-right" style="color:var(--color-gold-1);"></i>
+              <div style="text-align:center;">
+                <i class="fa-solid fa-square-check" style="font-size:20px; color:var(--color-gold-1);"></i>
+                <div style="font-size:12px; font-weight:700; color:var(--color-gold-1); margin-top:4px;">Execução</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Painel 3: A Virada -->
+          <div style="flex:1; background:rgba(195,145,24,0.08); border:1px solid var(--color-gold-1); border-radius:14px; padding:22px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <h3 style="font-size:20px; font-weight:700; color:var(--color-gold-2); margin-bottom:4px;">A Grande Virada</h3>
+              <p style="font-size:15px; color:var(--color-primary); margin-bottom:14px;">Aprender sem programar cada linha.</p>
+            </div>
+            <div style="background:#FFFFFF; border-radius:10px; padding:14px; border:1px dashed var(--color-gold-1); display:flex; flex-direction:column; gap:8px;">
+              <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:#b91c1c;">
+                <i class="fa-solid fa-xmark"></i> Regras humanas manuais e frágeis
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:#15803d; font-weight:700;">
+                <i class="fa-solid fa-check"></i> Máquinas aprendendo com os dados
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid #e2e8f0; padding-top:10px; font-size:13px; color:var(--color-muted);">
+        Máquinas não precisam "pensar" no sentido biológico; elas aprendem padrões de forma autônoma.
+      </div>
+    </div>
+
+    <!-- SLIDE 4: Definição de Arthur Samuel -->
+    <div class="slide" id="slide-4">
+      <div>
+        <p class="slide-eyebrow">Origem do Conceito</p>
+        <h2 class="slide-title">O Que é Machine Learning?</h2>
+      </div>
+      <div class="content-area" style="flex-direction:column; text-align:center;">
+        <div style="width:64px; height:4px; background:var(--color-gold-1); margin-bottom:28px;"></div>
+        <blockquote style="font-family:'Space Grotesk',sans-serif; font-size:36px; font-weight:700; color:var(--color-primary); max-width:980px; line-height:1.35; margin-bottom:24px;">
+          "O campo de estudos que dá aos computadores a habilidade de aprender sem serem explicitamente programados para isso."
+        </blockquote>
+        <p style="font-size:20px; font-weight:700; color:var(--color-gold-2);">
+          — Arthur Samuel (1959)
+        </p>
+      </div>
+      <div style="border-top:1px solid #e2e8f0; padding-top:10px; text-align:center; font-size:14px; color:var(--color-muted);">
+        O computador deixa de ser apenas uma calculadora de ordens fixas e passa a ser um descobridor de funções.
+      </div>
+    </div>
+
+    <!-- SLIDE 5: IA vs Machine Learning -->
+    <div class="slide" id="slide-5">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div>
+          <p class="slide-eyebrow">Distinção Conceitual</p>
+          <h2 class="slide-title">Inteligência Artificial vs. Machine Learning</h2>
+        </div>
+        <img src="BEZ_GOLD.png" alt="Logo BEZ" class="brand-logo" onerror="this.style.display='none'">
+      </div>
+      <div class="content-area">
+        <div style="display:flex; gap:32px; width:100%;">
+          <!-- IA -->
+          <div style="flex:1; background:#f9fafb; border:1px solid var(--color-gold-3); border-radius:16px; padding:32px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+                <i class="fa-solid fa-diagram-project" style="font-size:28px; color:var(--color-primary);"></i>
+                <h3 style="font-size:24px; font-weight:700; color:var(--color-primary);">Inteligência Artificial (IA)</h3>
+              </div>
+              <p style="font-size:18px; color:var(--color-muted); line-height:1.4; margin-bottom:16px;">
+                Qualquer tarefa inteligente realizada de forma autônoma por um computador, seja através de regras fixas ou aprendizado.
+              </p>
+            </div>
+            <div style="background:#FFFFFF; border-left:4px solid var(--color-primary); padding:16px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.05);">
+              <span style="font-size:12px; font-weight:700; text-transform:uppercase; color:var(--color-gold-2); display:block; margin-bottom:4px;">Natureza Determinística:</span>
+              <p style="font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:700; color:var(--color-primary); margin:0;">
+                "Se X acontecer, faça Y."
+              </p>
+            </div>
+          </div>
+
+          <!-- ML -->
+          <div style="flex:1; background:rgba(195,145,24,0.08); border:1px solid var(--color-gold-1); border-radius:16px; padding:32px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+                <i class="fa-solid fa-chart-line" style="font-size:28px; color:var(--color-gold-2);"></i>
+                <h3 style="font-size:24px; font-weight:700; color:var(--color-gold-2);">Machine Learning (ML)</h3>
+              </div>
+              <p style="font-size:18px; color:var(--color-primary); line-height:1.4; margin-bottom:16px;">
+                Subcampo em que o sistema é treinado com exemplos passados para inferir respostas sem ter regras codificadas de antemão.
+              </p>
+            </div>
+            <div style="background:#FFFFFF; border-left:4px solid var(--color-gold-1); padding:16px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.05);">
+              <span style="font-size:12px; font-weight:700; text-transform:uppercase; color:var(--color-gold-2); display:block; margin-bottom:4px;">Natureza Probabilística:</span>
+              <p style="font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:700; color:var(--color-gold-2); margin:0;">
+                "Se X tiver a maior probabilidade do conjunto, faça Y."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid #e2e8f0; padding-top:10px; font-size:13px; color:var(--color-muted);">
+        Todo Machine Learning é IA, mas nem toda IA é Machine Learning.
+      </div>
+    </div>
+
+    <!-- SLIDE 6: A Mudança de Paradigma (Diagrama SVG Nítido) -->
+    <div class="slide" id="slide-6">
+      <div>
+        <p class="slide-eyebrow">Mudança Fundamental</p>
+        <h2 class="slide-title">Programação Tradicional vs. Machine Learning</h2>
+      </div>
+      <div class="content-area">
+        <div style="display:flex; gap:36px; width:100%; align-items:center;">
+          <!-- SVG Diagrama Recriado 100% Nítido -->
+          <div style="flex:1.3; background:#FFFFFF; border:1px solid var(--color-gold-3); border-radius:14px; padding:24px;">
+            <svg width="100%" height="280" viewBox="0 0 540 260">
+              <!-- Top: Traditional -->
+              <text x="270" y="22" font-family="'Space Grotesk', sans-serif" font-size="15" font-weight="bold" fill="#013832" text-anchor="middle">Traditional Programming</text>
+              <text x="75" y="65" font-size="13" font-weight="600" fill="#475569" text-anchor="end">Input</text>
+              <line x1="85" y1="60" x2="155" y2="60" stroke="#013832" stroke-width="2" marker-end="url(#arrow)"/>
+              <text x="75" y="100" font-size="13" font-weight="600" fill="#475569" text-anchor="end">Program</text>
+              <line x1="85" y1="95" x2="155" y2="95" stroke="#013832" stroke-width="2"/>
+              <line x1="155" y1="60" x2="155" y2="80" stroke="#013832" stroke-width="2"/>
+              <line x1="155" y1="80" x2="175" y2="80" stroke="#013832" stroke-width="2"/>
+              
+              <rect x="180" y="55" width="130" height="50" rx="8" fill="#f8fafc" stroke="#013832" stroke-width="2"/>
+              <text x="245" y="85" font-size="14" font-weight="bold" fill="#013832" text-anchor="middle">Computation</text>
+              
+              <line x1="310" y1="80" x2="380" y2="80" stroke="#013832" stroke-width="2"/>
+              <polygon points="380,80 372,75 372,85" fill="#013832"/>
+              <text x="395" y="85" font-size="14" font-weight="bold" fill="#013832">Results</text>
+
+              <!-- Bottom: Machine Learning -->
+              <text x="270" y="152" font-family="'Space Grotesk', sans-serif" font-size="15" font-weight="bold" fill="#9A7013" text-anchor="middle">Machine Learning</text>
+              <text x="75" y="195" font-size="13" font-weight="600" fill="#475569" text-anchor="end">Input</text>
+              <line x1="85" y1="190" x2="155" y2="190" stroke="#C39118" stroke-width="2"/>
+              <text x="75" y="230" font-size="13" font-weight="600" fill="#475569" text-anchor="end">Desired Result</text>
+              <line x1="85" y1="225" x2="155" y2="225" stroke="#C39118" stroke-width="2"/>
+              <line x1="155" y1="190" x2="155" y2="210" stroke="#C39118" stroke-width="2"/>
+              <line x1="155" y1="210" x2="175" y2="210" stroke="#C39118" stroke-width="2"/>
+              
+              <rect x="180" y="185" width="130" height="50" rx="8" fill="#fdfaf3" stroke="#C39118" stroke-width="2"/>
+              <text x="245" y="215" font-size="14" font-weight="bold" fill="#9A7013" text-anchor="middle">Computation</text>
+              
+              <line x1="310" y1="210" x2="370" y2="210" stroke="#C39118" stroke-width="2"/>
+              <polygon points="370,210 362,205 362,215" fill="#C39118"/>
+              <text x="380" y="215" font-size="13" font-weight="bold" fill="#013832">Program = <tspan fill="#b91c1c">ML Model</tspan></text>
+            </svg>
+          </div>
+
+          <!-- Explicação em texto -->
+          <div style="flex:1; display:flex; flex-direction:column; gap:16px;">
+            <div style="background:#f8fafc; border-left:4px solid var(--color-primary); padding:18px; border-radius:8px;">
+              <h4 style="font-size:17px; font-weight:700; color:var(--color-primary); margin-bottom:4px;">Antes: O Humano Escrevia a Regra</h4>
+              <p style="font-size:14px; color:var(--color-muted);">Se a regra tivesse 1.000 exceções, o programador precisava codificar todas manualmente.</p>
+            </div>
+            <div style="background:rgba(195,145,24,0.08); border-left:4px solid var(--color-gold-1); padding:18px; border-radius:8px;">
+              <h4 style="font-size:17px; font-weight:700; color:var(--color-gold-2); margin-bottom:4px;">Agora: Os Dados Revelam a Regra</h4>
+              <p style="font-size:14px; color:var(--color-primary);">Você mostra exemplos de entrada e os resultados desejados. O computador infere o modelo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid #e2e8f0; padding-top:10px; font-size:13px; color:var(--color-muted);">
+        Essa inversão tornou viável resolver problemas que seriam impossíveis de mapear via código tradicional.
+      </div>
+    </div>
+
+    <!-- SLIDE 7: Exemplos Reais (Spam & Regra do Gin) -->
+    <div class="slide" id="slide-7">
+      <div>
+        <p class="slide-eyebrow">Aplicações Práticas</p>
+        <h2 class="slide-title">Machine Learning no Mundo Real</h2>
+      </div>
+      <div class="content-area">
+        <div style="display:flex; gap:28px; width:100%; align-items:stretch;">
+          <!-- Spam -->
+          <div style="flex:1; background:#f9fafb; border:1px solid var(--color-gold-3); border-radius:16px; padding:28px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <i class="fa-solid fa-envelope-circle-check" style="font-size:36px; color:var(--color-primary); margin-bottom:16px;"></i>
+              <h3 style="font-size:22px; font-weight:700; color:var(--color-primary); margin-bottom:8px;">Classificador de Spam</h3>
+              <p style="font-size:16px; color:var(--color-muted); line-height:1.4;">
+                A caixa de entrada observa quais e-mails você marca como "importantes" ou "lixo". Com o tempo, infere padrões e antecipa o filtro.
+              </p>
+            </div>
+            <div style="background:#FFFFFF; padding:10px; border-radius:8px; border:1px dashed var(--color-gold-3); font-size:13px; color:var(--color-gold-2); font-weight:600;">
+              Adaptação contínua a novos golpes
+            </div>
+          </div>
+
+          <!-- iFood e Gin -->
+          <div style="flex:1.2; background:rgba(195,145,24,0.08); border:1px solid var(--color-gold-1); border-radius:16px; padding:24px; display:flex; gap:20px; align-items:center;">
+            <div style="flex:1;">
+              <i class="fa-solid fa-shield-halved" style="font-size:32px; color:var(--color-gold-2); margin-bottom:12px;"></i>
+              <h3 style="font-size:22px; font-weight:700; color:var(--color-primary); margin-bottom:8px;">Fraude no iFood: A Regra do Gin</h3>
+              <p style="font-size:15px; color:var(--color-muted); line-height:1.4; margin-bottom:12px;">
+                Relatado em <em>O Cientista e o Executivo</em>: o algoritmo detectou que tentativas de compra de garrafas de gin de restaurantes específicos de madrugada tinham quase 100% de correlação com cartões clonados.
+              </p>
+              <span style="font-size:12px; font-weight:700; color:var(--color-gold-2); background:#FFFFFF; padding:4px 8px; border-radius:4px; border:1px solid var(--color-gold-3);">
+                Padrão impossível de prever manualmente
+              </span>
+            </div>
+            <!-- Garrafa SVG Iluminada -->
+            <div style="width:110px; height:210px; background:#FFFFFF; border-radius:12px; border:1px solid var(--color-gold-3); display:flex; align-items:center; justify-content:center;">
+              <svg width="60" height="170" viewBox="0 0 60 170">
+                <rect x="24" y="5" width="12" height="25" rx="3" fill="#013832"/>
+                <rect x="21" y="30" width="18" height="8" rx="2" fill="#C39118"/>
+                <path d="M 21 38 Q 10 55 10 75 L 10 155 Q 10 165 20 165 L 40 165 Q 50 165 50 155 L 50 75 Q 50 55 39 38 Z" fill="#f8fafc" stroke="#013832" stroke-width="2"/>
+                <rect x="15" y="80" width="30" height="50" rx="3" fill="rgba(195,145,24,0.15)" stroke="#C39118" stroke-width="1.5"/>
+                <text x="30" y="102" font-size="10" font-weight="bold" fill="#013832" text-anchor="middle">DRY</text>
+                <text x="30" y="116" font-size="11" font-weight="bold" fill="#9A7013" text-anchor="middle">GIN</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid #e2e8f0; padding-top:10px; font-size:13px; color:var(--color-muted);">
+        O algoritmo encontrou uma regra de negócio oculta analisando correlações em milhões de transações.
+      </div>
+    </div>
+
+    <!-- SLIDE 8: Discriminativos vs Generativos -->
+    <div class="slide" id="slide-8">
+      <div>
+        <p class="slide-eyebrow">Famílias de Modelos</p>
+        <h2 class="slide-title">Modelos Discriminativos vs. Modelos Generativos</h2>
+      </div>
+      <div class="content-area">
+        <div style="display:flex; gap:32px; width:100%;">
+          <!-- Discriminativo -->
+          <div style="flex:1; background:#f9fafb; border:1px solid var(--color-gold-3); border-radius:16px; padding:24px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+                <i class="fa-solid fa-magnifying-glass" style="font-size:22px; color:var(--color-primary);"></i>
+                <h3 style="font-size:22px; font-weight:700; color:var(--color-primary);">Modelos Discriminativos</h3>
+              </div>
+              <p style="font-size:15px; color:var(--color-muted); margin-bottom:14px;">
+                Separam classes calculando a fronteira de decisão. Atuam como auditores.
+              </p>
+            </div>
+            <!-- Desenho Linear SVG de Animal de 4 Patas -->
+            <div style="height:190px; background:#FFFFFF; border-radius:12px; border:1px dashed var(--color-gold-3); display:flex; align-items:center; justify-content:center;">
+              <svg width="180" height="130" viewBox="0 0 180 130">
+                <ellipse cx="95" cy="75" rx="45" ry="25" fill="none" stroke="#013832" stroke-width="3"/>
+                <circle cx="140" cy="50" r="18" fill="none" stroke="#013832" stroke-width="3"/>
+                <polygon points="135,35 142,22 148,34" fill="none" stroke="#013832" stroke-width="2.5"/>
+                <polygon points="145,35 152,24 156,36" fill="none" stroke="#013832" stroke-width="2.5"/>
+                <circle cx="148" cy="48" r="3" fill="#013832"/>
+                <line x1="65" y1="90" x2="60" y2="120" stroke="#013832" stroke-width="3" stroke-linecap="round"/>
+                <line x1="80" y1="95" x2="78" y2="120" stroke="#013832" stroke-width="3" stroke-linecap="round"/>
+                <line x1="115" y1="95" x2="112" y2="120" stroke="#013832" stroke-width="3" stroke-linecap="round"/>
+                <line x1="130" y1="90" x2="135" y2="120" stroke="#013832" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 50 70 Q 30 65 35 45" fill="none" stroke="#013832" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div style="background:#FFFFFF; border-left:4px solid var(--color-primary); padding:12px; border-radius:6px; margin-top:12px;">
+              <p style="font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700; color:var(--color-primary); margin:0;">
+                "Isso é um cachorro ou um gato?"
+              </p>
+            </div>
+          </div>
+
+          <!-- Generativo -->
+          <div style="flex:1; background:rgba(195,145,24,0.08); border:1px solid var(--color-gold-1); border-radius:16px; padding:24px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+                <i class="fa-solid fa-wand-magic-sparkles" style="font-size:22px; color:var(--color-gold-2);"></i>
+                <h3 style="font-size:22px; font-weight:700; color:var(--color-gold-2);">Modelos Generativos</h3>
+              </div>
+              <p style="font-size:15px; color:var(--color-primary); margin-bottom:14px;">
+                Aprendem a distribuição dos dados para produzir novos itens do zero.
+              </p>
+            </div>
+            <!-- Várias fotos de gatos como input em rede neural -->
+            <div style="height:190px; background:#FFFFFF; border-radius:12px; border:1px dashed var(--color-gold-1); display:flex; align-items:center; justify-content:space-around; padding:12px;">
+              <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:6px;">
+                <div style="width:42px; height:42px; background:#fef3c7; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:20px;">🐱</div>
+                <div style="width:42px; height:42px; background:#fef3c7; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:20px;">🐈</div>
+                <div style="width:42px; height:42px; background:#fef3c7; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:20px;">🐯</div>
+                <div style="width:42px; height:42px; background:#fef3c7; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:20px;">🦁</div>
+              </div>
+              <i class="fa-solid fa-arrow-right" style="color:var(--color-gold-1); font-size:18px;"></i>
+              <div style="background:var(--color-primary); color:#FFFFFF; border-radius:8px; padding:12px; text-align:center;">
+                <i class="fa-solid fa-brain" style="font-size:24px; color:var(--color-gold-light); margin-bottom:4px;"></i>
+                <div style="font-size:11px; font-weight:700;">Rede Neural</div>
+              </div>
+              <i class="fa-solid fa-arrow-right" style="color:var(--color-gold-1); font-size:18px;"></i>
+              <div style="border:2px solid var(--color-gold-1); border-radius:8px; padding:8px 12px; text-align:center; background:#fdfaf3;">
+                <div style="font-size:24px;">✨🐱✨</div>
+                <div style="font-size:10px; font-weight:700; color:var(--color-gold-2);">Gato Inédito</div>
+              </div>
+            </div>
+            <div style="background:#FFFFFF; border-left:4px solid var(--color-gold-1); padding:12px; border-radius:6px; margin-top:12px;">
+              <p style="font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700; color:var(--color-gold-2); margin:0;">
+                "Desenhe um gato inédito para mim."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid #e2e8f0; padding-top:10px; font-size:13px; color:var(--color-muted);">
+        As IAs que geram código (como ChatGPT e Claude) pertencem à família dos modelos generativos.
+      </div>
+    </div>
+
+    <!-- SLIDE 9: O Mapa do ML com Setas Reais de Conexão -->
+    <div class="slide" id="slide-9" style="padding: 24px 56px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div>
+          <p class="slide-eyebrow" style="margin-bottom:2px;">Taxonomia de Algoritmos</p>
+          <h2 class="slide-title" style="font-size:24px;">Categorias de Aprendizado de Máquina</h2>
+        </div>
+        <img src="BEZ_GOLD.png" alt="Logo BEZ" class="brand-logo" style="height:30px;" onerror="this.style.display='none'">
+      </div>
+      <div class="content-area" style="align-items:center; justify-content:center;">
+        <div style="display:flex; align-items:center; width:100%; max-width:1160px;">
+          <!-- Raiz -->
+          <div style="width:130px; text-align:center;">
+            <div style="background:var(--color-primary); border:2px solid var(--color-gold-1); border-radius:12px; padding:16px 10px; box-shadow:0 4px 10px rgba(0,0,0,0.15);">
+              <i class="fa-solid fa-brain" style="font-size:24px; color:var(--color-gold-light); margin-bottom:6px;"></i>
+              <div style="font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:700; color:#FFFFFF; line-height:1.2;">
+                Machine Learning
+              </div>
+            </div>
+          </div>
+
+          <!-- Conector Central SVG -->
+          <div style="width:36px; height:450px; display:flex; align-items:center;">
+            <svg width="36" height="450" viewBox="0 0 36 450" fill="none">
+              <path d="M0 225 C18 225, 18 55, 36 55" stroke="#166534" stroke-width="2"/>
+              <path d="M0 225 C18 225, 18 190, 36 190" stroke="#854d0e" stroke-width="2"/>
+              <path d="M0 225 C18 225, 18 310, 36 310" stroke="#475569" stroke-width="2"/>
+              <path d="M0 225 C18 225, 18 400, 36 400" stroke="#9A7013" stroke-width="2"/>
+              <polygon points="36,55 30,51 30,59" fill="#166534"/>
+              <polygon points="36,190 30,186 30,194" fill="#854d0e"/>
+              <polygon points="36,310 30,306 30,314" fill="#475569"/>
+              <polygon points="36,400 30,396 30,404" fill="#9A7013"/>
+            </svg>
+          </div>
+
+          <!-- 4 Ramos -->
+          <div style="flex:1; display:flex; flex-direction:column; gap:8px;">
+            <!-- 1. Supervisionado -->
+            <div style="display:flex; align-items:center; background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:6px 12px;">
+              <div style="width:130px; font-weight:700; color:#166534; font-size:14px;">Supervisionado</div>
+              <div style="width:24px; height:80px; display:flex; align-items:center;">
+                <svg width="24" height="80" viewBox="0 0 24 80" fill="none">
+                  <path d="M0 40 C12 40, 12 20, 24 20" stroke="#166534" stroke-width="1.8"/>
+                  <path d="M0 40 C12 40, 12 60, 24 60" stroke="#166534" stroke-width="1.8"/>
+                  <polygon points="24,20 18,17 18,23" fill="#166534"/>
+                  <polygon points="24,60 18,57 18,63" fill="#166534"/>
+                </svg>
+              </div>
+              <div style="flex:1; display:flex; flex-direction:column; gap:4px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span style="font-size:12px; font-weight:700; color:#15803d; background:#dcfce7; padding:2px 6px; border-radius:4px; width:95px; text-align:center;">Classificação</span>
+                  <span style="font-size:12px; color:#1e293b;">Naive Bayes, Regressão Logística, KNN, Random Forest, SVM, Árvore de Decisão</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span style="font-size:12px; font-weight:700; color:#15803d; background:#dcfce7; padding:2px 6px; border-radius:4px; width:95px; text-align:center;">Regressão</span>
+                  <span style="font-size:12px; color:#1e293b;">Regressão Linear Simples, Multivariada e Lasso</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Não-Supervisionado -->
+            <div style="display:flex; align-items:center; background:#fefce8; border:1px solid #fde047; border-radius:10px; padding:6px 12px;">
+              <div style="width:130px; font-weight:700; color:#854d0e; font-size:14px;">Não-Supervisionado</div>
+              <div style="width:24px; height:100px; display:flex; align-items:center;">
+                <svg width="24" height="100" viewBox="0 0 24 100" fill="none">
+                  <path d="M0 50 C12 50, 12 18, 24 18" stroke="#854d0e" stroke-width="1.8"/>
+                  <path d="M0 50 L24 50" stroke="#854d0e" stroke-width="1.8"/>
+                  <path d="M0 50 C12 50, 12 82, 24 82" stroke="#854d0e" stroke-width="1.8"/>
+                  <polygon points="24,18 18,15 18,21" fill="#854d0e"/>
+                  <polygon points="24,50 18,47 18,53" fill="#854d0e"/>
+                  <polygon points="24,82 18,79 18,85" fill="#854d0e"/>
+                </svg>
+              </div>
+              <div style="flex:1; display:flex; flex-direction:column; gap:4px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span style="font-size:12px; font-weight:700; color:#a16207; background:#fef9c3; padding:2px 6px; border-radius:4px; width:95px; text-align:center;">Clustering</span>
+                  <span style="font-size:12px; color:#1e293b;">K-Means, DBSCAN, Análise de Componentes Principais (PCA), ICA</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span style="font-size:12px; font-weight:700; color:#a16207; background:#fef9c3; padding:2px 6px; border-radius:4px; width:95px; text-align:center;">Associação</span>
+                  <span style="font-size:12px; color:#1e293b;">Frequent Pattern Growth, Algoritmo Apriori</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span style="font-size:12px; font-weight:700; color:#a16207; background:#fef9c3; padding:2px 6px; border-radius:4px; width:95px; text-align:center;">Anomalia</span>
+                  <span style="font-size:12px; color:#1e293b;">Z-Score, Isolation Forest</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Semi-Supervisionado -->
+            <div style="display:flex; align-items:center; background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:6px 12px;">
+              <div style="width:130px; font-weight:700; color:#475569; font-size:14px;">Semi-Superv.</div>
+              <div style="width:24px; height:45px; display:flex; align-items:center;">
+                <svg width="24" height="45" viewBox="0 0 24 45" fill="none">
+                  <path d="M0 22 L24 22" stroke="#475569" stroke-width="1.8"/>
+                  <polygon points="24,22 18,19 18,25" fill="#475569"/>
+                </svg>
+              </div>
+              <div style="flex:1; display:flex; align-items:center; gap:8px;">
+                <span style="font-size:12px; font-weight:700; color:#334155; background:#e2e8f0; padding:2px 6px; border-radius:4px; width:95px; text-align:center;">Técnicas</span>
+                <span style="font-size:12px; color:#1e293b;">Auto-treinamento (Self-Training), Co-treinamento (Co-Training)</span>
+              </div>
+            </div>
+
+            <!-- 4. Por Reforço -->
+            <div style="display:flex; align-items:center; background:rgba(195,145,24,0.08); border:1px solid var(--color-gold-3); border-radius:10px; padding:6px 12px;">
+              <div style="width:130px; font-weight:700; color:var(--color-gold-2); font-size:14px;">Por Reforço</div>
+              <div style="width:24px; height:70px; display:flex; align-items:center;">
+                <svg width="24" height="70" viewBox="0 0 24 70" fill="none">
+                  <path d="M0 35 C12 35, 12 18, 24 18" stroke="#9A7013" stroke-width="1.8"/>
+                  <path d="M0 35 C12 35, 12 52, 24 52" stroke="#9A7013" stroke-width="1.8"/>
+                  <polygon points="24,18 18,15 18,21" fill="#9A7013"/>
+                  <polygon points="24,52 18,49 18,55" fill="#9A7013"/>
+                </svg>
+              </div>
+              <div style="flex:1; display:flex; flex-direction:column; gap:4px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span style="font-size:12px; font-weight:700; color:var(--color-gold-2); background:#fef3c7; padding:2px 6px; border-radius:4px; width:95px; text-align:center;">Model-Free</span>
+                  <span style="font-size:12px; color:#1e293b;">Policy Optimization, Q-Learning</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span style="font-size:12px; font-weight:700; color:var(--color-gold-2); background:#fef3c7; padding:2px 6px; border-radius:4px; width:95px; text-align:center;">Model-Based</span>
+                  <span style="font-size:12px; color:#1e293b;">Learn the Model, Given the Model</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid #e2e8f0; padding-top:6px; font-size:12px; color:var(--color-muted); text-align:center;">
+        Cada categoria resolve uma pergunta de negócio diferente.
+      </div>
+    </div>
+
+    <!-- SLIDE 10: O Diagrama de Frutas Nítido -->
+    <div class="slide" id="slide-10">
+      <div>
+        <p class="slide-eyebrow">Visualização Intuitiva</p>
+        <h2 class="slide-title">Supervisionado vs. Não-Supervisionado (Clustering)</h2>
+      </div>
+      <div class="content-area">
+        <div style="display:flex; flex-direction:column; gap:20px; width:100%;">
+          <!-- Supervisionado -->
+          <div style="background:#f9fafb; border:1px solid var(--color-gold-3); border-radius:14px; padding:18px 24px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+              <h4 style="font-size:18px; font-weight:700; color:var(--color-primary);">1. Aprendizado Supervisionado (Com Rótulos)</h4>
+              <span style="font-size:13px; font-weight:700; color:var(--color-gold-1);">Classificação Exata</span>
+            </div>
+            <div style="display:flex; align-items:center; justify-content:space-around; background:#FFFFFF; border-radius:10px; padding:14px; border:1px dashed var(--color-gold-3);">
+              <div style="text-align:center;">
+                <div style="font-size:28px;">🍎 🍎 🍎</div>
+                <div style="font-size:12px; font-weight:600; color:var(--color-muted);">Entrada + Rótulo: "Isto é maçã"</div>
+              </div>
+              <i class="fa-solid fa-arrow-right" style="color:var(--color-gold-1);"></i>
+              <div style="text-align:center;">
+                <i class="fa-solid fa-brain" style="font-size:30px; color:var(--color-primary);"></i>
+                <div style="font-size:12px; font-weight:700; color:var(--color-primary);">Modelo</div>
+              </div>
+              <i class="fa-solid fa-arrow-right" style="color:var(--color-gold-1);"></i>
+              <div style="text-align:center;">
+                <div style="font-size:28px;">🍎 ?</div>
+                <div style="font-size:13px; font-weight:700; color:#15803d;">Predição: "É uma maçã!"</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Não Supervisionado -->
+          <div style="background:rgba(195,145,24,0.08); border:1px solid var(--color-gold-1); border-radius:14px; padding:18px 24px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+              <h4 style="font-size:18px; font-weight:700; color:var(--color-gold-2);">2. Aprendizado Não-Supervisionado (Clustering)</h4>
+              <span style="font-size:13px; font-weight:700; color:var(--color-gold-2);">Agrupamento Autônomo</span>
+            </div>
+            <div style="display:flex; align-items:center; justify-content:space-around; background:#FFFFFF; border-radius:10px; padding:14px; border:1px dashed var(--color-gold-1);">
+              <div style="text-align:center;">
+                <div style="font-size:26px;">🍎 🍌 🍑 🍎 🍌 🍑</div>
+                <div style="font-size:12px; font-weight:600; color:var(--color-muted);">Cesto misturado sem rótulos</div>
+              </div>
+              <i class="fa-solid fa-arrow-right" style="color:var(--color-gold-2);"></i>
+              <div style="text-align:center;">
+                <i class="fa-solid fa-shapes" style="font-size:30px; color:var(--color-gold-2);"></i>
+                <div style="font-size:12px; font-weight:700; color:var(--color-gold-2);">Agrupador</div>
+              </div>
+              <i class="fa-solid fa-arrow-right" style="color:var(--color-gold-2);"></i>
+              <div style="text-align:center; display:flex; gap:16px;">
+                <div><span style="font-size:20px;">🍎🍎</span><div style="font-size:10px; font-weight:700;">Cluster 1</div></div>
+                <div><span style="font-size:20px;">🍌🍌</span><div style="font-size:10px; font-weight:700;">Cluster 2</div></div>
+                <div><span style="font-size:20px;">🍑🍑</span><div style="font-size:10px; font-weight:700;">Cluster 3</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid #e2e8f0; padding-top:10px; font-size:13px; color:var(--color-muted);">
+        No supervisionado nós ensinamos o nome. No não-supervisionado a máquina descobre afinidades.
+      </div>
+    </div>
+
+    <!-- SLIDE 11: Outros Paradigmas -->
+    <div class="slide" id="slide-11">
+      <div>
+        <p class="slide-eyebrow">Completando o Cenário</p>
+        <h2 class="slide-title">Reforço, Semi e Auto-Supervisionado</h2>
+      </div>
+      <div class="content-area">
+        <div style="display:flex; gap:28px; width:100%; align-items:stretch;">
+          <div style="flex:1; background:#f9fafb; border:1px solid var(--color-gold-3); border-radius:16px; padding:30px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <i class="fa-solid fa-gamepad" style="font-size:32px; color:var(--color-primary); margin-bottom:16px;"></i>
+              <h3 style="font-size:22px; font-weight:700; color:var(--color-primary); margin-bottom:10px;">Por Reforço</h3>
+              <p style="font-size:16px; color:var(--color-muted); line-height:1.4;">
+                Aprender por tentativa e erro com pontuação (recompensa ou penalidade). O mesmo método usado para ensinar IAs a jogar xadrez ou videogame.
+              </p>
+            </div>
+            <div style="font-size:13px; font-weight:700; color:var(--color-primary);">Ex: AlphaGo, Robótica</div>
+          </div>
+
+          <div style="flex:1; background:#f9fafb; border:1px solid var(--color-gold-3); border-radius:16px; padding:30px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <i class="fa-solid fa-layer-group" style="font-size:32px; color:var(--color-gold-2); margin-bottom:16px;"></i>
+              <h3 style="font-size:22px; font-weight:700; color:var(--color-primary); margin-bottom:10px;">Semi-Supervisionado</h3>
+              <p style="font-size:16px; color:var(--color-muted); line-height:1.4;">
+                Combina uma pequena quantidade de dados anotados por especialistas com um oceano de dados brutos não anotados.
+              </p>
+            </div>
+            <div style="font-size:13px; font-weight:700; color:var(--color-gold-2);">Ex: Diagnósticos Médicos</div>
+          </div>
+
+          <div style="flex:1; background:rgba(195,145,24,0.08); border:1px solid var(--color-gold-1); border-radius:16px; padding:30px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <i class="fa-solid fa-wand-magic-sparkles" style="font-size:32px; color:var(--color-gold-1); margin-bottom:16px;"></i>
+              <h3 style="font-size:22px; font-weight:700; color:var(--color-gold-2); margin-bottom:10px;">Auto-Supervisionado</h3>
+              <p style="font-size:16px; color:var(--color-primary); line-height:1.4;">
+                O próprio texto gera o gabarito. O modelo oculta a próxima palavra de uma frase e tenta adivinhar. O motor das LLMs.
+              </p>
+            </div>
+            <div style="font-size:13px; font-weight:700; color:var(--color-gold-1);">Ex: ChatGPT, Claude, Gemini</div>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid #e2e8f0; padding-top:10px; font-size:13px; color:var(--color-muted);">
+        O aprendizado auto-supervisionado foi a chave que permitiu treinar modelos com toda a internet.
+      </div>
+    </div>
+
+    <!-- SLIDE 12: LLMs - O Que São? (Predição da Próxima Palavra) -->
+    <div class="slide" id="slide-12">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div>
+          <p class="slide-eyebrow">A Fronteira Atual</p>
+          <h2 class="slide-title">O Que São Large Language Models (LLMs)?</h2>
+        </div>
+        <img src="BEZ_GOLD.png" alt="Logo BEZ" class="brand-logo" onerror="this.style.display='none'">
+      </div>
+      <div class="content-area">
+        <div style="display:flex; gap:32px; width:100%; align-items:stretch;">
+          <div style="flex:1; background:#f9fafb; border:1px solid var(--color-gold-3); border-radius:16px; padding:28px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <i class="fa-solid fa-code-compare" style="font-size:32px; color:var(--color-primary); margin-bottom:12px;"></i>
+              <h3 style="font-size:22px; font-weight:700; color:var(--color-primary); margin-bottom:8px;">Linguagem Humana vs. Máquina</h3>
+              <p style="font-size:16px; color:var(--color-muted); line-height:1.4;">
+                Computadores não "leem" significados ou sentimentos: eles convertem texto em matrizes de números (tokens) e calculam pesos matemáticos.
+              </p>
+            </div>
+            <div style="background:#FFFFFF; padding:12px; border-radius:8px; border:1px dashed var(--color-gold-3); font-size:13px; color:var(--color-gold-2);">
+              Palavras &rarr; Tokens Numéricos &rarr; Cálculo Probabilístico
+            </div>
+          </div>
+
+          <!-- Mecânica de Predição -->
+          <div style="flex:1.2; background:rgba(195,145,24,0.08); border:1px solid var(--color-gold-1); border-radius:16px; padding:24px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                <i class="fa-solid fa-forward" style="color:var(--color-gold-2);"></i>
+                <h3 style="font-size:20px; font-weight:700; color:var(--color-gold-2);">Cálculo da Próxima Palavra Mais Provável</h3>
+              </div>
+              <p style="font-size:14px; color:var(--color-primary); margin-bottom:12px;">
+                Dado o contexto de entrada, a LLM calcula a distribuição estatística de tokens seguintes:
+              </p>
+            </div>
+
+            <!-- Caixa de Demonstração -->
+            <div style="background:#FFFFFF; border-radius:10px; padding:14px; border:1px solid var(--color-gold-3);">
+              <div style="font-family:'Space Grotesk',sans-serif; font-size:17px; font-weight:700; color:var(--color-primary); margin-bottom:10px;">
+                "O código apresentou um erro de..."
+              </div>
+              <div style="display:flex; flex-direction:column; gap:6px;">
+                <div style="display:flex; justify-content:space-between; background:#dcfce7; padding:6px 12px; border-radius:6px; font-size:13px; font-weight:700; color:#166534;">
+                  <span>sintaxe</span>
+                  <span>82% de probabilidade</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; background:#f8fafc; padding:6px 12px; border-radius:6px; font-size:13px; color:var(--color-muted);">
+                  <span>conexão</span>
+                  <span>14% de probabilidade</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; background:#f8fafc; padding:6px 12px; border-radius:6px; font-size:13px; color:var(--color-muted);">
+                  <span>banana</span>
+                  <span>0.001% de probabilidade</span>
+                </div>
+              </div>
+            </div>
+            <div style="font-size:12px; color:var(--color-muted); text-align:center;">
+              Em escala de bilhões de parâmetros, essa predição gera raciocínio, escrita e código executável.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid #e2e8f0; padding-top:10px; font-size:13px; color:var(--color-muted);">
+        As LLMs aprenderam a sintaxe de todas as linguagens de programação lendo o código aberto da humanidade.
+      </div>
+    </div>
+
+    <!-- SLIDE 13: A Mudança de Rotina do Desenvolvedor -->
+    <div class="slide" id="slide-13">
+      <div>
+        <p class="slide-eyebrow">Evolução do Trabalho</p>
+        <h2 class="slide-title">Como os Programadores Trabalham</h2>
+      </div>
+      <div class="content-area">
+        <div style="display:flex; gap:32px; width:100%; align-items:stretch;">
+          <!-- Antigamente: Meme Desenho -->
+          <div style="flex:1; background:#f9fafb; border:1px solid var(--color-gold-3); border-radius:16px; padding:24px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <h3 style="font-size:20px; font-weight:700; color:var(--color-primary); margin-bottom:6px;">Antes: O Desespero do StackOverflow</h3>
+              <p style="font-size:15px; color:var(--color-muted); margin-bottom:12px;">Horas travado em documentações e caçando erros de pontuação.</p>
+            </div>
+            <!-- Meme Ilustrado SVG -->
+            <div style="height:190px; background:#FFFFFF; border-radius:12px; border:1px dashed var(--color-gold-3); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:10px;">
+              <svg width="220" height="120" viewBox="0 0 220 120">
+                <!-- Monitor -->
+                <rect x="50" y="10" width="120" height="70" rx="4" fill="#013832"/>
+                <rect x="55" y="15" width="110" height="55" fill="#f8fafc"/>
+                <text x="60" y="30" font-size="9" fill="#dc2626" font-family="monospace">Error: ';' expected</text>
+                <text x="60" y="45" font-size="9" fill="#475569" font-family="monospace">StackOverflow: 47 tabs</text>
+                <rect x="100" y="80" width="20" height="15" fill="#64748b"/>
+                <rect x="85" y="95" width="50" height="6" rx="2" fill="#64748b"/>
+                <!-- Programador Desesperado -->
+                <circle cx="25" cy="55" r="14" fill="#fcd34d" stroke="#9A7013" stroke-width="2"/>
+                <line x1="20" y1="48" x2="23" y2="52" stroke="#9A7013" stroke-width="2"/>
+                <line x1="28" y1="52" x2="31" y2="48" stroke="#9A7013" stroke-width="2"/>
+                <ellipse cx="25.5" cy="62" rx="5" ry="4" fill="#dc2626"/>
+                <!-- Mãos na cabeça -->
+                <path d="M 12 60 Q 8 45 20 42" stroke="#9A7013" stroke-width="2.5" fill="none"/>
+                <path d="M 39 60 Q 43 45 31 42" stroke="#9A7013" stroke-width="2.5" fill="none"/>
+              </svg>
+              <span style="font-size:12px; font-weight:700; color:#dc2626; margin-top:6px;">"4 horas para achar uma vírgula faltando..."</span>
+            </div>
+            <div style="font-size:13px; color:var(--color-muted); margin-top:8px;">Escrever linha por linha &rarr; Bloqueio constante.</div>
+          </div>
+
+          <!-- Atualmente: Vibecoding -->
+          <div style="flex:1; background:rgba(195,145,24,0.08); border:1px solid var(--color-gold-1); border-radius:16px; padding:24px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <h3 style="font-size:20px; font-weight:700; color:var(--color-gold-2); margin-bottom:6px;">Hoje: Arquiteto com IA (Vibecoding)</h3>
+              <p style="font-size:15px; color:var(--color-primary); margin-bottom:12px;">Instrução em português, prototipagem imediata e auditoria crítica.</p>
+            </div>
+            <!-- Fluxo Moderno -->
+            <div style="height:190px; background:#FFFFFF; border-radius:12px; border:1px dashed var(--color-gold-1); display:flex; flex-direction:column; justify-content:center; padding:16px; gap:10px;">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <i class="fa-solid fa-comment-dots" style="color:var(--color-gold-2); font-size:18px;"></i>
+                <span style="font-size:13px; font-weight:600; color:var(--color-primary);">1. Explica o objetivo em linguagem natural</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <i class="fa-solid fa-bolt" style="color:var(--color-gold-1); font-size:18px;"></i>
+                <span style="font-size:13px; font-weight:600; color:var(--color-primary);">2. A IA gera a estrutura e os scripts em 5 segundos</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <i class="fa-solid fa-check-double" style="color:#16a34a; font-size:18px;"></i>
+                <span style="font-size:13px; font-weight:700; color:#16a34a;">3. Você revisa, ajusta e valida a lógica</span>
+              </div>
+            </div>
+            <div style="font-size:13px; font-weight:700; color:var(--color-gold-2); margin-top:8px;">O foco sai da sintaxe e vai para a solução.</div>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid #e2e8f0; padding-top:10px; font-size:13px; color:var(--color-muted);">
+        O profissional de tecnologia virou um maestro que orquestra ferramentas de inteligência artificial.
+      </div>
+    </div>
+
+    <!-- SLIDE 14: A Lógica de Programação Ainda é Soberana -->
+    <div class="slide" id="slide-14">
+      <div>
+        <p class="slide-eyebrow">O Grande Segredo</p>
+        <h2 class="slide-title">A Lógica por Trás da Conversa</h2>
+      </div>
+      <div class="content-area">
+        <div style="display:flex; gap:28px; width:100%; align-items:stretch;">
+          <div style="flex:1; background:#f9fafb; border:1px solid var(--color-gold-3); border-radius:16px; padding:32px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <i class="fa-solid fa-puzzle-piece" style="font-size:36px; color:var(--color-primary); margin-bottom:16px;"></i>
+              <h3 style="font-size:22px; font-weight:700; color:var(--color-primary); margin-bottom:10px;">Pensamento Estruturado</h3>
+              <p style="font-size:16px; color:var(--color-muted); line-height:1.4;">
+                A IA não adivinha desejos confusos. Quem sabe quebrar um problema grande em passos lógicos obtém soluções perfeitas.
+              </p>
+            </div>
+            <span style="font-size:13px; font-weight:700; color:var(--color-primary);">Decomposição de Problemas</span>
+          </div>
+
+          <div style="flex:1; background:#f9fafb; border:1px solid var(--color-gold-3); border-radius:16px; padding:32px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <i class="fa-solid fa-arrows-split-up-and-left" style="font-size:36px; color:var(--color-gold-2); margin-bottom:16px;"></i>
+              <h3 style="font-size:22px; font-weight:700; color:var(--color-primary); margin-bottom:10px;">Condições e Fluxos</h3>
+              <p style="font-size:16px; color:var(--color-muted); line-height:1.4;">
+                Entender regras de negócio (se isso acontecer, faça aquilo; repita para cada usuário) é o que diferencia prompts genéricos de código profissional.
+              </p>
+            </div>
+            <span style="font-size:13px; font-weight:700; color:var(--color-gold-2);">Estruturas de Decisão</span>
+          </div>
+
+          <div style="flex:1; background:rgba(195,145,24,0.08); border:1px solid var(--color-gold-1); border-radius:16px; padding:32px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <i class="fa-solid fa-shield-virus" style="font-size:36px; color:var(--color-gold-1); margin-bottom:16px;"></i>
+              <h3 style="font-size:22px; font-weight:700; color:var(--color-gold-2); margin-bottom:10px;">Auditoria Crítica</h3>
+              <p style="font-size:16px; color:var(--color-primary); line-height:1.4;">
+                Modelos probabilísticos podem alucinar. O conhecimento dos fundamentos é o que permite a você identificar e corrigir falhas.
+              </p>
+            </div>
+            <span style="font-size:13px; font-weight:700; color:var(--color-gold-1);">Segurança e Validação</span>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid #e2e8f0; padding-top:10px; font-size:13px; color:var(--color-muted);">
+        Aprender a programar com IA é aprender a pensar com clareza e liderar a máquina.
+      </div>
+    </div>
+
+    <!-- SLIDE 15: Transição para a Prática (Vibecoding) -->
+    <div class="slide" id="slide-15" style="background:var(--color-primary); padding: 56px 80px; text-align:center;">
+      <div style="display:flex; justify-content:center;">
+        <img src="BEZ_GOLD.png" alt="Logo BEZ" class="brand-logo" style="height:54px;" onerror="this.style.display='none'">
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center;">
+        <p class="slide-eyebrow" style="color:var(--color-gold-light);">Hora de Construir</p>
+        <h2 style="font-family:'Space Grotesk',sans-serif; font-size:52px; font-weight:800; color:#FFFFFF; line-height:1.2; margin-bottom:16px;">
+          Mão na Massa: Vibecoding
+        </h2>
+        <p style="font-size:22px; color:var(--color-gold-3); max-width:820px; line-height:1.4; margin:0 auto 28px auto;">
+          Vamos criar agora um dashboard completo e interativo em tempo real, conversando diretamente com a IA.
+        </p>
+        <div style="display:inline-flex; align-items:center; gap:16px; background:rgba(214,182,119,0.15); border:1px solid var(--color-gold-3); padding:16px 36px; border-radius:40px;">
+          <i class="fa-solid fa-terminal" style="font-size:22px; color:var(--color-gold-light);"></i>
+          <span style="font-size:20px; font-weight:700; color:#FFFFFF;">Abram seus navegadores: vamos programar!</span>
+        </div>
+      </div>
+      <div>
+        <span style="font-size:14px; color:var(--color-gold-3); letter-spacing:1px; text-transform:uppercase;">BEZ • Inovação em Software e IA</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Controles Inferiores da Apresentação -->
+  <div id="nav-controls">
+    <button class="nav-btn" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i> Anterior</button>
+    <span id="slide-indicator" style="font-weight:700;">Slide 1 de 15</span>
+    <button class="nav-btn" onclick="nextSlide()">Próximo <i class="fa-solid fa-chevron-right"></i></button>
+    <button class="nav-btn" onclick="toggleFullscreen()"><i class="fa-solid fa-expand"></i> Tela Cheia</button>
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 15;
+
+    function showSlide(n) {
+      document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+      const active = document.getElementById(`slide-${n}`);
+      if (active) active.classList.add('active');
+      document.getElementById('slide-indicator').innerText = `Slide ${n} de ${totalSlides}`;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        showSlide(currentSlide);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        showSlide(currentSlide);
+      }
+    }
+
+    function toggleFullscreen() {
+      const elem = document.getElementById('deck-wrapper');
+      if (!document.fullscreenElement) {
+        elem.requestFullscreen().catch(err => alert(err.message));
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Navegação por teclado
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      }
+    });
+  </script>
+</body>
+</html>
