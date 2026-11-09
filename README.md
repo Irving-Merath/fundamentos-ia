@@ -111,6 +111,19 @@ Você vai me ajudar a criar, do zero, uma plataforma gratuita com um dashboard d
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 <b>PROMPT PARA CRIAÇÃO VIA COMPUTADOR</b>
 
 Preciso de um projeto em Python para trabalhar com dados abertos do DATASUS, entregue em arquivos prontos e testados. Responda em português do Brasil.
