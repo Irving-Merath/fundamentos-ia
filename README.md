@@ -76,7 +76,8 @@ Clique nas etapas abaixo para copiar os prompts usados na oficina:
 <summary><b>Passo 1: Criando a estrutura base do Dashboard</b> (Clique para expandir)</summary>
 
 
-<summary><b>PROMPT PARA CRIAÇÃO VIA CELULAR</b></summary>
+<b>PROMPT PARA CRIAÇÃO VIA CELULAR</b>
+
 ```Você vai me ajudar a criar, do zero, uma plataforma gratuita com um dashboard de dados do DATASUS. Responda sempre em português do Brasil. O plano abaixo já foi discutido e aprovado por mim; siga-o fielmente.
 
 ## MINHAS CONDIÇÕES
@@ -112,7 +113,8 @@ Clique nas etapas abaixo para copiar os prompts usados na oficina:
 
 
 
-<summary><b>PROMPT PARA CRIAÇÃO VIA COMPUTADOR</b></summary>
+<b>PROMPT PARA CRIAÇÃO VIA COMPUTADOR</b>
+
 ```Preciso de um projeto em Python para trabalhar com dados abertos do DATASUS, entregue em arquivos prontos e testados. Responda em português do Brasil.
 
 ## Meu ambiente
