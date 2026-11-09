@@ -73,12 +73,10 @@ Link para apresentação: https://irving-merath.github.io/fundamentos-ia/
 Clique nas etapas abaixo para copiar os prompts usados na oficina:
 
 <details>
-<summary><b>Passo 1: Criando a estrutura base do Dashboard</b> (Clique para expandir)</summary>
+<summary>📱 <b>Prompt 1: Criação via Celular (Android / Chrome)</b> (Clique para expandir)</summary>
 
-
-<b>PROMPT PARA CRIAÇÃO VIA CELULAR</b>
-
-```Você vai me ajudar a criar, do zero, uma plataforma gratuita com um dashboard de dados do DATASUS. Responda sempre em português do Brasil. O plano abaixo já foi discutido e aprovado por mim; siga-o fielmente.
+```text
+Você vai me ajudar a criar, do zero, uma plataforma gratuita com um dashboard de dados do DATASUS. Responda sempre em português do Brasil. O plano abaixo já foi discutido e aprovado por mim; siga-o fielmente.
 
 ## MINHAS CONDIÇÕES
 1. Desenvolvo apenas pelo celular Android (navegador Chrome). Tudo precisa ser possível pelo celular.
@@ -108,14 +106,14 @@ Clique nas etapas abaixo para copiar os prompts usados na oficina:
 - Controle incremental: dados/<base>/_controle/<UF>.json guarda a assinatura "pasta/arquivo:tamanho" por ano; se não mudou e o parquet existe, pula.
 - Saída por estado e ano: saida/<base>/<UF>_<ANO>.parquet (ou _prelim se veio da pasta preliminar), colunas: ano, cod_mun (6 dígitos), variavel, categoria (texto), n (int32). Também saida/<base>/_uf/<UF>_<ANO>.parquet com o mesmo conteúdo agregado por UF (cod_mun = código de 2 dígitos da UF), usado na visão Brasil.
 - Código de município inválido vira "<código UF>0000" (município ignorado).
-- Variáveis do SINASC: total; sexo (1/M Masculino, 2/F Feminino); raca_cor (1 Branca, 2 Preta, 3 Amarela, 4 Parda, 5 Indígena); faixa_idade_mae a partir de IDADEMAE válida 10–60 (Menos de 15, 15 a 19, 20 a 24, 25 a 29, 30 a 34, 35 a 39, 40 ou mais); escolaridade_mae via ESCMAE.```
+- Variáveis do SINASC: total; sexo (1/M Masculino, 2/F Feminino); raca_cor (1 Branca, 2 Preta, 3 Amarela, 4 Parda, 5 Indígena); faixa_idade_mae a partir de IDADEMAE válida 10–60 (Menos de 15, 15 a 19, 20 a 24, 25 a 29, 30 a 34, 35 a 39, 40 ou mais); escolaridade_mae via ESCMAE.
 
 
 
 
 <b>PROMPT PARA CRIAÇÃO VIA COMPUTADOR</b>
 
-```Preciso de um projeto em Python para trabalhar com dados abertos do DATASUS, entregue em arquivos prontos e testados. Responda em português do Brasil.
+Preciso de um projeto em Python para trabalhar com dados abertos do DATASUS, entregue em arquivos prontos e testados. Responda em português do Brasil.
 
 ## Meu ambiente
 - Windows, PowerShell e VS Code. Python 3.13 em um ambiente virtual `.venv`.
@@ -150,5 +148,5 @@ Clique nas etapas abaixo para copiar os prompts usados na oficina:
 - Evite `use_container_width` (descontinuado) e use `width="stretch"`.
 - Ao final, dê o `pip install` necessário e o comando para rodar: `python -m streamlit run app_datasus.py` (no Windows, o comando `streamlit` direto costuma falhar).
 - Explique em poucas linhas como conferir o resultado (`pd.read_parquet(...)`, `.shape`, `.head()`).
-- Seja objetivo: entregue os arquivos e um resumo curto, sem tutoriais longos.```
+- Seja objetivo: entregue os arquivos e um resumo curto, sem tutoriais longos.
 
