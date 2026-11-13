@@ -67,7 +67,7 @@
     #progress-fill {
       height: 100%;
       background: linear-gradient(90deg, var(--color-gold-1), var(--color-gold-light));
-      width: 4.34%;
+      width: 3.23%;
       transition: width 0.3s ease;
     }
 
@@ -238,11 +238,75 @@
       object-fit: contain;
       border-radius: 8px;
     }
+
+    /* ===== Layouts de imagem ampliada ===== */
+    .slide.slide-compact { padding: 22px 48px 14px 48px; }
+    .slide.slide-compact .slide-header { margin-bottom: 4px; }
+    .slide.slide-compact .slide-title { font-size: 26px; }
+    .content-area.stretch { align-items: stretch; padding: 6px 0; }
+
+    .step-row { display: flex; gap: 28px; width: 100%; align-items: stretch; }
+    .step-text { flex: 0 0 330px; display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+    .step-card { padding: 16px 18px; border-radius: 8px; }
+    .step-card h4 { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+    .step-card p { font-size: 15px; line-height: 1.45; }
+    .step-card.primary { background: #f8fafc; border-left: 4px solid var(--color-primary); }
+    .step-card.primary h4 { color: var(--color-primary); }
+    .step-card.primary p { color: var(--color-muted); }
+    .step-card.gold { background: rgba(195,145,24,0.08); border-left: 4px solid var(--color-gold-1); }
+    .step-card.gold h4 { color: var(--color-gold-2); }
+    .step-card.gold p { color: var(--color-primary); }
+
+    /* Contêiner que ocupa toda a altura disponível do slide */
+    .shot-max { flex: 1; min-width: 0; min-height: 0; display: flex; align-items: center; justify-content: center; }
+    .shot-max img {
+      height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      border: 1px solid var(--color-gold-3);
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.10);
+      background: #FFFFFF;
+    }
+
+    /* Slides de imagem horizontal com legenda */
+    .wide-shot { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 12px; min-height: 0; }
+    .wide-shot .shot-max { width: 100%; }
+    .shot-caption {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--color-primary);
+      background: rgba(195,145,24,0.10);
+      border-left: 5px solid var(--color-gold-1);
+      padding: 10px 22px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .shot-caption a { color: var(--color-gold-2); }
+
+    /* Clique para ampliar (lightbox) */
+    .screenshot-frame img, .shot-max img { cursor: zoom-in; }
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 20, 18, 0.92);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      cursor: zoom-out;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 10px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+    #lightbox .lb-hint { position: absolute; top: 14px; right: 20px; color: var(--color-gold-light); font-size: 13px; font-family: 'Space Grotesk', sans-serif; }
   </style>
 </head>
 <body>
 
   <div id="presentation-container">
+    <div id="lightbox" onclick="closeLightbox()"><span class="lb-hint">Clique ou Esc para fechar</span><img alt=""></div>
     <div id="progress-bar"><div id="progress-fill"></div></div>
 
     <!-- SLIDE 1: Capa -->
@@ -1159,8 +1223,54 @@
       </div>
     </div>
 
-    <!-- SLIDE 18: Passo 1 da Prática: Aceder ao Repositório no GitHub -->
-    <div class="slide" id="slide-18">
+    <!-- SLIDE 18: Entrar no Claude -->
+    <div class="slide slide-compact" id="slide-18">
+      <div class="slide-header">
+        <div>
+          <p class="slide-eyebrow">Preparação</p>
+          <h2 class="slide-title">Usando o Claude para Gerar o Código</h2>
+        </div>
+        <img src="BEZ_GOLD.png" alt="BEZ" class="brand-logo" onerror="this.style.display='none'">
+      </div>
+      <div class="content-area stretch">
+        <div class="wide-shot">
+          <div class="shot-max">
+            <img src="./claude.png" alt="Página do Claude" onerror="this.src='https://placehold.co/600x400/013832/FFE083?text=claude.png'">
+          </div>
+          <div class="shot-caption">Entre no Claude e insira o prompt</div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Copie o prompt do slide 15, cole no Claude e envie.</span>
+        <span>BEZ</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 19: Cadastro no GitHub -->
+    <div class="slide slide-compact" id="slide-19">
+      <div class="slide-header">
+        <div>
+          <p class="slide-eyebrow">Preparação</p>
+          <h2 class="slide-title">Crie sua Conta no GitHub</h2>
+        </div>
+        <img src="BEZ_GOLD.png" alt="BEZ" class="brand-logo" onerror="this.style.display='none'">
+      </div>
+      <div class="content-area stretch">
+        <div class="wide-shot">
+          <div class="shot-max">
+            <img src="./github_cadastro.png.jpg" alt="Cadastro no GitHub" onerror="this.src='https://placehold.co/600x400/013832/FFE083?text=github_cadastro.png.jpg'">
+          </div>
+          <div class="shot-caption">Entre no <a href="https://github.com/signup" target="_blank">GitHub</a> e faça seu cadastro</div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>github.com/signup — o GitHub vai hospedar o código e os robôs de coleta.</span>
+        <span>BEZ</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 20: Passo 1 da Prática: Acessar o Repositório no GitHub -->
+    <div class="slide slide-compact" id="slide-20">
       <div class="slide-header">
         <div>
           <p class="slide-eyebrow">Passo 1 da Prática</p>
@@ -1168,20 +1278,20 @@
         </div>
         <img src="BEZ_GOLD.png" alt="BEZ" class="brand-logo" onerror="this.style.display='none'">
       </div>
-      <div class="content-area">
-        <div style="display:flex; gap:36px; width:100%; align-items:center;">
-          <div style="flex:1;">
-            <div style="background:#f8fafc; border-left:4px solid var(--color-primary); padding:18px; border-radius:8px; margin-bottom:14px;">
-              <h4 style="font-size:18px; font-weight:700; color:var(--color-primary); margin-bottom:6px;">1. Acesse o repositório do projeto</h4>
-              <p style="font-size:15px; color:var(--color-muted);">Entre no repositório <b>dashdatasus</b> pelo GitHub no navegador.</p>
+      <div class="content-area stretch">
+        <div class="step-row">
+          <div class="step-text">
+            <div class="step-card primary">
+              <h4>1. Acesse o repositório do projeto</h4>
+              <p>Entre no repositório <b>dashdatasus</b> pelo GitHub no navegador.</p>
             </div>
-            <div style="background:rgba(195,145,24,0.08); border-left:4px solid var(--color-gold-1); padding:18px; border-radius:8px;">
-              <h4 style="font-size:18px; font-weight:700; color:var(--color-gold-2); margin-bottom:6px;">2. Clique no botão verde "Code"</h4>
-              <p style="font-size:15px; color:var(--color-primary);">Abra as opções para copiar o endereço de clonagem ou descarregar o projeto.</p>
+            <div class="step-card gold">
+              <h4>2. Clique no botão verde "Code"</h4>
+              <p>Abra as opções para copiar o endereço de clonagem ou descarregar o projeto.</p>
             </div>
           </div>
-          <div class="screenshot-frame" style="flex:1.2;">
-            <img src="./link.png" alt="Repositório GitHub e botão Code" onerror="this.src='https://placehold.co/600x400/013832/FFE083?text=Passo+1:+link.png'">
+          <div class="shot-max">
+            <img src="./link.png" alt="Repositório GitHub e botão Code" onerror="this.src='https://placehold.co/600x400/013832/FFE083?text=link.png'">
           </div>
         </div>
       </div>
@@ -1191,8 +1301,8 @@
       </div>
     </div>
 
-    <!-- SLIDE 19: Passo 2 da Prática: Aceder às Configurações (Settings) -->
-    <div class="slide" id="slide-19">
+    <!-- SLIDE 21: Passo 2 da Prática: Aceder às Configurações (Settings) -->
+    <div class="slide" id="slide-21">
       <div class="slide-header">
         <div>
           <p class="slide-eyebrow">Passo 2 da Prática</p>
@@ -1223,8 +1333,8 @@
       </div>
     </div>
 
-    <!-- SLIDE 20: Passo 3 da Prática: Navegar até Actions -->
-    <div class="slide" id="slide-20">
+    <!-- SLIDE 22: Passo 3 da Prática: Navegar até Actions -->
+    <div class="slide" id="slide-22">
       <div class="slide-header">
         <div>
           <p class="slide-eyebrow">Passo 3 da Prática</p>
@@ -1232,20 +1342,20 @@
         </div>
         <img src="BEZ_GOLD.png" alt="BEZ" class="brand-logo" onerror="this.style.display='none'">
       </div>
-      <div class="content-area">
-        <div style="display:flex; gap:36px; width:100%; align-items:center;">
-          <div style="flex:1;">
-            <div style="background:#f8fafc; border-left:4px solid var(--color-primary); padding:18px; border-radius:8px; margin-bottom:14px;">
-              <h4 style="font-size:18px; font-weight:700; color:var(--color-primary); margin-bottom:6px;">1. Menu Lateral Esquerdo</h4>
-              <p style="font-size:15px; color:var(--color-muted);">Localize a seção <b>Code, planning, and automation</b>.</p>
+      <div class="content-area stretch">
+        <div class="step-row">
+          <div class="step-text">
+            <div class="step-card primary">
+              <h4>1. Menu Lateral Esquerdo</h4>
+              <p>Localize a seção <b>Code, planning, and automation</b>.</p>
             </div>
-            <div style="background:rgba(195,145,24,0.08); border-left:4px solid var(--color-gold-1); padding:18px; border-radius:8px;">
-              <h4 style="font-size:18px; font-weight:700; color:var(--color-gold-2); margin-bottom:6px;">2. Clique em "Actions"</h4>
-              <p style="font-size:15px; color:var(--color-primary);">Aqui configuramos os robôs de atualização automática de dados.</p>
+            <div class="step-card gold">
+              <h4>2. Clique em "Actions"</h4>
+              <p>Aqui configuramos os robôs de atualização automática de dados.</p>
             </div>
           </div>
-          <div class="screenshot-frame" style="flex:1.2;">
-            <img src="./actions.png" alt="Menu Actions" onerror="this.src='https://placehold.co/600x400/013832/FFE083?text=Passo+3:+actions.png'">
+          <div class="shot-max">
+            <img src="./actions.png" alt="Menu Actions" style="max-height:490px;" onerror="this.src='https://placehold.co/600x400/013832/FFE083?text=actions.png'">
           </div>
         </div>
       </div>
@@ -1255,8 +1365,8 @@
       </div>
     </div>
 
-    <!-- SLIDE 21: Passo 4 da Prática: Definições Gerais (General) -->
-    <div class="slide" id="slide-21">
+    <!-- SLIDE 23: Passo 4 da Prática: Definições Gerais (General) -->
+    <div class="slide slide-compact" id="slide-23">
       <div class="slide-header">
         <div>
           <p class="slide-eyebrow">Passo 4 da Prática</p>
@@ -1264,20 +1374,20 @@
         </div>
         <img src="BEZ_GOLD.png" alt="BEZ" class="brand-logo" onerror="this.style.display='none'">
       </div>
-      <div class="content-area">
-        <div style="display:flex; gap:36px; width:100%; align-items:center;">
-          <div style="flex:1;">
-            <div style="background:#f8fafc; border-left:4px solid var(--color-primary); padding:18px; border-radius:8px; margin-bottom:14px;">
-              <h4 style="font-size:18px; font-weight:700; color:var(--color-primary); margin-bottom:6px;">1. Expanda a Seção Actions</h4>
-              <p style="font-size:15px; color:var(--color-muted);">No menu lateral esquerdo sob a categoria Actions.</p>
+      <div class="content-area stretch">
+        <div class="step-row">
+          <div class="step-text">
+            <div class="step-card primary">
+              <h4>1. Expanda a Seção Actions</h4>
+              <p>No menu lateral esquerdo sob a categoria Actions.</p>
             </div>
-            <div style="background:rgba(195,145,24,0.08); border-left:4px solid var(--color-gold-1); padding:18px; border-radius:8px;">
-              <h4 style="font-size:18px; font-weight:700; color:var(--color-gold-2); margin-bottom:6px;">2. Clique em "General"</h4>
-              <p style="font-size:15px; color:var(--color-primary);">Abra as permissões globais de execução para os fluxos de trabalho.</p>
+            <div class="step-card gold">
+              <h4>2. Clique em "General"</h4>
+              <p>Abra as permissões globais de execução para os fluxos de trabalho.</p>
             </div>
           </div>
-          <div class="screenshot-frame" style="flex:1.2;">
-            <img src="./general.png" alt="Actions General" onerror="this.src='https://placehold.co/600x400/013832/FFE083?text=Passo+4:+general.png'">
+          <div class="shot-max">
+            <img src="./general.png" alt="Actions General" onerror="this.src='https://placehold.co/600x400/013832/FFE083?text=general.png'">
           </div>
         </div>
       </div>
@@ -1287,8 +1397,8 @@
       </div>
     </div>
 
-    <!-- SLIDE 22: Passo 5 da Prática: Permissões de Workflow (Read and Write) -->
-    <div class="slide" id="slide-22">
+    <!-- SLIDE 24: Passo 5 da Prática: Permissões de Workflow (Read and Write) -->
+    <div class="slide" id="slide-24">
       <div class="slide-header">
         <div>
           <p class="slide-eyebrow">Passo 5 da Prática</p>
@@ -1319,28 +1429,25 @@
       </div>
     </div>
 
-    <!-- SLIDE 23: Executando os Robôs de Coleta (Carregando Workflows) -->
-    <div class="slide" id="slide-23">
+    <!-- SLIDE 25: Carregando Workflows (1/2): Aba Actions -->
+    <div class="slide slide-compact" id="slide-25">
       <div class="slide-header">
         <div>
-          <p class="slide-eyebrow">Automação de Dados</p>
-          <h2 class="slide-title">Carregando Workflows: Executando os Robôs de Coleta</h2>
+          <p class="slide-eyebrow">Automação de Dados (1/2)</p>
+          <h2 class="slide-title">Carregando Workflows: Acessar a Aba Actions</h2>
         </div>
         <img src="BEZ_GOLD.png" alt="BEZ" class="brand-logo" onerror="this.style.display='none'">
       </div>
-      <div class="content-area">
-        <div style="display:flex; gap:24px; width:100%; height:100%; align-items:center; justify-content:center;">
-          <div class="screenshot-frame" style="flex:1; height:440px; flex-direction:column; justify-content:space-between;">
-            <div style="width:100%; text-align:left; font-size:13px; font-weight:700; color:var(--color-primary); margin-bottom:6px;">
-              1. Acessar a aba superior Actions
+      <div class="content-area stretch">
+        <div class="step-row">
+          <div class="step-text">
+            <div class="step-card primary">
+              <h4>1. Acesse a aba superior "Actions"</h4>
+              <p>No topo do repositório, abra a aba <b>Actions</b> para ver os fluxos de trabalho disponíveis.</p>
             </div>
-            <img src="./actions_log.png" alt="Aba Actions" style="max-height:380px; object-fit:contain;" onerror="this.src='https://placehold.co/400x380/013832/FFE083?text=actions_log.png'">
           </div>
-          <div class="screenshot-frame" style="flex:1; height:440px; flex-direction:column; justify-content:space-between;">
-            <div style="width:100%; text-align:left; font-size:13px; font-weight:700; color:var(--color-gold-2); margin-bottom:6px;">
-              2. Selecionar o Workflow "Coleta DATASUS"
-            </div>
-            <img src="./base_log.png" alt="Workflow Coleta DATASUS" style="max-height:380px; object-fit:contain;" onerror="this.src='https://placehold.co/400x380/013832/FFE083?text=base_log.png'">
+          <div class="shot-max">
+            <img src="./actions_log.png" alt="Aba Actions" onerror="this.src='https://placehold.co/600x400/013832/FFE083?text=actions_log.png'">
           </div>
         </div>
       </div>
@@ -1350,28 +1457,53 @@
       </div>
     </div>
 
-    <!-- SLIDE 24: Disparando o Robô (Run Workflow) -->
-    <div class="slide" id="slide-24">
+    <!-- SLIDE 26: Carregando Workflows (2/2): Coleta DATASUS -->
+    <div class="slide slide-compact" id="slide-26">
       <div class="slide-header">
         <div>
-          <p class="slide-eyebrow">Execução Manual</p>
-          <h2 class="slide-title">Disparando o Robô (Run Workflow)</h2>
+          <p class="slide-eyebrow">Automação de Dados (2/2)</p>
+          <h2 class="slide-title">Carregando Workflows: Selecionar o Robô de Coleta</h2>
         </div>
         <img src="BEZ_GOLD.png" alt="BEZ" class="brand-logo" onerror="this.style.display='none'">
       </div>
-      <div class="content-area">
-        <div style="display:flex; gap:24px; width:100%; height:100%; align-items:center; justify-content:center;">
-          <div class="screenshot-frame" style="flex:1; height:440px; flex-direction:column; justify-content:space-between;">
-            <div style="width:100%; text-align:left; font-size:13px; font-weight:700; color:var(--color-primary); margin-bottom:6px;">
-              1. Clicar no botão "Run workflow"
+      <div class="content-area stretch">
+        <div class="step-row">
+          <div class="step-text">
+            <div class="step-card gold">
+              <h4>2. Selecione o workflow "Coleta DATASUS"</h4>
+              <p>Na lista de workflows, clique em <b>Coleta DATASUS</b> — é o robô que baixa e consolida os dados.</p>
             </div>
-            <img src="./run.png" alt="Botão Run workflow" style="max-height:380px; object-fit:contain;" onerror="this.src='https://placehold.co/400x380/013832/FFE083?text=run.png'">
           </div>
-          <div class="screenshot-frame" style="flex:1; height:440px; flex-direction:column; justify-content:space-between;">
-            <div style="width:100%; text-align:left; font-size:13px; font-weight:700; color:var(--color-gold-2); margin-bottom:6px;">
-              2. Abrir o menu suspenso de seleção de base
+          <div class="shot-max">
+            <img src="./base_log.png" alt="Workflow Coleta DATASUS" onerror="this.src='https://placehold.co/600x400/013832/FFE083?text=base_log.png'">
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Acompanhamento dos fluxos automatizados de extração e consolidação.</span>
+        <span>BEZ</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 27: Disparando o Robô (1/2): Run Workflow -->
+    <div class="slide slide-compact" id="slide-27">
+      <div class="slide-header">
+        <div>
+          <p class="slide-eyebrow">Execução Manual (1/2)</p>
+          <h2 class="slide-title">Disparando o Robô: Clicar em Run Workflow</h2>
+        </div>
+        <img src="BEZ_GOLD.png" alt="BEZ" class="brand-logo" onerror="this.style.display='none'">
+      </div>
+      <div class="content-area stretch">
+        <div class="step-row">
+          <div class="step-text">
+            <div class="step-card primary">
+              <h4>1. Clique no botão "Run workflow"</h4>
+              <p>Ele aparece à direita da lista de execuções e abre as opções de disparo manual.</p>
             </div>
-            <img src="./sistemas.png" alt="Menu suspenso de seleção" style="max-height:380px; object-fit:contain;" onerror="this.src='https://placehold.co/400x380/013832/FFE083?text=sistemas.png'">
+          </div>
+          <div class="shot-max">
+            <img src="./run.png" alt="Botão Run workflow" onerror="this.src='https://placehold.co/600x400/013832/FFE083?text=run.png'">
           </div>
         </div>
       </div>
@@ -1381,8 +1513,36 @@
       </div>
     </div>
 
-    <!-- SLIDE 25: Selecionando as Bases & Deploy no Streamlit -->
-    <div class="slide" id="slide-25">
+    <!-- SLIDE 28: Disparando o Robô (2/2): Menu de Bases -->
+    <div class="slide slide-compact" id="slide-28">
+      <div class="slide-header">
+        <div>
+          <p class="slide-eyebrow">Execução Manual (2/2)</p>
+          <h2 class="slide-title">Disparando o Robô: Escolher a Base</h2>
+        </div>
+        <img src="BEZ_GOLD.png" alt="BEZ" class="brand-logo" onerror="this.style.display='none'">
+      </div>
+      <div class="content-area stretch">
+        <div class="step-row">
+          <div class="step-text">
+            <div class="step-card gold">
+              <h4>2. Abra o menu suspenso de seleção de base</h4>
+              <p>Escolha qual sistema do DATASUS o robô deve coletar nesta execução.</p>
+            </div>
+          </div>
+          <div class="shot-max">
+            <img src="./sistemas.png" alt="Menu suspenso de seleção" onerror="this.src='https://placehold.co/600x400/013832/FFE083?text=sistemas.png'">
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Disparo manual sob demanda via interface do GitHub.</span>
+        <span>BEZ</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 29: Selecionando as Bases & Deploy no Streamlit -->
+    <div class="slide slide-compact" id="slide-29">
       <div class="slide-header">
         <div>
           <p class="slide-eyebrow">Parâmetros & Publicação</p>
@@ -1390,20 +1550,20 @@
         </div>
         <img src="BEZ_GOLD.png" alt="BEZ" class="brand-logo" onerror="this.style.display='none'">
       </div>
-      <div class="content-area">
-        <div style="display:flex; gap:32px; width:100%; align-items:center;">
-          <div style="flex:1; display:flex; flex-direction:column; gap:16px;">
-            <div style="background:#f8fafc; border-left:4px solid var(--color-primary); padding:16px; border-radius:8px;">
-              <h4 style="font-size:16px; font-weight:700; color:var(--color-primary); margin-bottom:4px;">Bases Disponíveis do DATASUS</h4>
-              <p style="font-size:14px; color:var(--color-muted);">Escolha entre coletar todas ou bases pontuais: <b>sinasc</b>, <b>sim</b>, <b>sih</b>, <b>sinan</b>, <b>cnes</b>, <b>sia</b> ou <b>pni</b>.</p>
+      <div class="content-area stretch">
+        <div class="step-row">
+          <div class="step-text">
+            <div class="step-card primary">
+              <h4>Bases Disponíveis do DATASUS</h4>
+              <p>Escolha entre coletar todas ou bases pontuais: <b>sinasc</b>, <b>sim</b>, <b>sih</b>, <b>sinan</b>, <b>cnes</b>, <b>sia</b> ou <b>pni</b>.</p>
             </div>
-            <div style="background:rgba(195,145,24,0.08); border-left:4px solid var(--color-gold-1); padding:16px; border-radius:8px;">
-              <h4 style="font-size:16px; font-weight:700; color:var(--color-gold-2); margin-bottom:4px;">Deploy no Streamlit Community Cloud</h4>
-              <p style="font-size:14px; color:var(--color-primary);">Acesse <b>share.streamlit.io</b>, conecte seu GitHub, selecione o repositório <b>dashdatasus</b> e clique em <b>Deploy</b>!</p>
+            <div class="step-card gold">
+              <h4>Deploy no Streamlit Community Cloud</h4>
+              <p>Acesse <b>share.streamlit.io</b>, conecte seu GitHub, selecione o repositório <b>dashdatasus</b> e clique em <b>Deploy</b>!</p>
             </div>
           </div>
-          <div class="screenshot-frame" style="flex:1.1; height:440px;">
-            <img src="./selecionando.png" alt="Lista de bases disponíveis" style="max-height:400px; object-fit:contain;" onerror="this.src='https://placehold.co/400x400/013832/FFE083?text=selecionando.png'">
+          <div class="shot-max">
+            <img src="./selecionando.png" alt="Lista de bases disponíveis" onerror="this.src='https://placehold.co/600x400/013832/FFE083?text=selecionando.png'">
           </div>
         </div>
       </div>
@@ -1413,8 +1573,31 @@
       </div>
     </div>
 
-    <!-- SLIDE 26: Contato e Encerramento -->
-    <div class="slide" id="slide-26" style="background:var(--color-primary); padding:48px 70px;">
+    <!-- SLIDE 30: Cadastro no Streamlit -->
+    <div class="slide slide-compact" id="slide-30">
+      <div class="slide-header">
+        <div>
+          <p class="slide-eyebrow">Publicação</p>
+          <h2 class="slide-title">Crie sua Conta no Streamlit</h2>
+        </div>
+        <img src="BEZ_GOLD.png" alt="BEZ" class="brand-logo" onerror="this.style.display='none'">
+      </div>
+      <div class="content-area stretch">
+        <div class="wide-shot">
+          <div class="shot-max">
+            <img src="./streamlit_cadastro.png.jpg" alt="Cadastro no Streamlit" onerror="this.src='https://placehold.co/600x400/013832/FFE083?text=streamlit_cadastro.png.jpg'">
+          </div>
+          <div class="shot-caption">Entre no <a href="https://share.streamlit.io" target="_blank">Streamlit</a> e faça seu cadastro (use sua conta do GitHub)</div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>share.streamlit.io — onde o dashboard será publicado gratuitamente.</span>
+        <span>BEZ</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 31: Contato e Encerramento -->
+    <div class="slide" id="slide-31" style="background:var(--color-primary); padding:48px 70px;">
       <div style="display:flex; justify-content:space-between; align-items:center;">
         <span class="slide-eyebrow" style="color:var(--color-gold-light); margin:0;">Encerramento & Conexões</span>
         <img src="BEZ_GOLD.png" alt="BEZ" class="brand-logo" style="height:48px;" onerror="this.style.display='none'">
@@ -1476,14 +1659,14 @@
   <!-- Controles da Apresentação -->
   <div id="nav-controls">
     <button class="nav-btn" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i> Anterior</button>
-    <span id="slide-indicator" style="font-weight:700; min-width:85px; text-align:center;">1 / 26</span>
+    <span id="slide-indicator" style="font-weight:700; min-width:85px; text-align:center;">1 / 31</span>
     <button class="nav-btn" onclick="nextSlide()">Seguinte <i class="fa-solid fa-chevron-right"></i></button>
     <button class="nav-btn" onclick="toggleFullscreen()"><i class="fa-solid fa-expand"></i> Tela Cheia</button>
   </div>
 
   <script>
     let currentSlide = 1;
-    const totalSlides = 26;
+    const totalSlides = 31;
 
     function showSlide(n) {
       document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
@@ -1547,8 +1730,25 @@
       }, 2000);
     }
 
+    // Clique para ampliar imagens
+    function openLightbox(src) {
+      const lb = document.getElementById('lightbox');
+      lb.querySelector('img').src = src;
+      lb.classList.add('open');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+    document.querySelectorAll('.screenshot-frame img, .shot-max img').forEach(img => {
+      img.addEventListener('click', () => openLightbox(img.src));
+    });
+
     // Teclado
     document.addEventListener('keydown', (e) => {
+      if (document.getElementById('lightbox').classList.contains('open')) {
+        if (e.key === 'Escape' || e.key === ' ') { e.preventDefault(); closeLightbox(); }
+        return;
+      }
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
         nextSlide();
       } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
