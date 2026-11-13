@@ -68,6 +68,9 @@ Material didático desenvolvido pela startup BEZ para palestras, workshops e cap
 Link para apresentação: https://irving-merath.github.io/fundamentos-ia/
 
 
+###Link do projeto criado
+https://github.com/Irving-Merath/dashdatasus
+
 ### 🛠️ Guia Prático de Vibecoding
 
 Clique nas etapas abaixo para copiar os prompts usados na oficina:
